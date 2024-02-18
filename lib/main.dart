@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:planet_app/layout/home_view.dart';
 import 'package:planet_app/models/splash_sceen/splash_sceen.dart';
-import 'package:planet_app/modules/on_boarding/on_boarding.dart';
+import 'package:planet_app/modules/on_boarding/on_boarding_view.dart';
 import 'package:planet_app/shared/bloc/app_cubit/app_cubit.dart';
 import 'package:planet_app/shared/style/theme/theme.dart';
 
@@ -21,6 +22,7 @@ class PlanetApp extends StatelessWidget {
         home: const SplashScreen(),
         routes: {
           OnBoardingView.id: (context) => const OnBoardingView(),
+          HomeView.id: (context) => const HomeView(),
         },
       ),
     );

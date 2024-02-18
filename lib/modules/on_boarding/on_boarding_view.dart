@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:planet_app/layout/home_view.dart';
 import 'package:planet_app/models/on_boarding_model.dart/on_boarding_model.dart';
 import 'package:planet_app/modules/on_boarding/on_boarding_body.dart';
 import 'package:planet_app/shared/bloc/app_cubit/app_cubit.dart';
+import 'package:planet_app/shared/componants/back_icon/back_icon.dart';
 import 'package:planet_app/shared/componants/custom_button.dart';
+import 'package:planet_app/shared/componants/nav_and_remove/nav_and_remove.dart';
 import 'package:planet_app/shared/style/colors/colors_style.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -22,16 +24,9 @@ class OnBoardingView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: defaultColor,
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 20),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SvgPicture.asset(
-                  'lib/asset/image/arrow_back.svg',
-                ),
-              ],
-            ),
+          leading: const Padding(
+            padding: EdgeInsets.only(left: 20),
+            child: BackIcon(),
           ),
         ),
         backgroundColor: defaultColor,
@@ -79,6 +74,7 @@ class OnBoardingView extends StatelessWidget {
                       if (BlocProvider.of<AppCubit>(context)
                               .onBoardingPageNum ==
                           onBoardingList.length - 1) {
+                        customNovAndRemove(context, routeName: HomeView.id);
                       } else {
                         pageController.nextPage(
                             duration: const Duration(milliseconds: 400),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:planet_app/modules/on_boarding/on_boarding.dart';
+import 'package:planet_app/modules/on_boarding/on_boarding_view.dart';
 import 'package:planet_app/shared/style/colors/colors_style.dart';
 
 class SplashScreen extends StatefulWidget {
