@@ -4,10 +4,10 @@ import 'package:planet_app/layout/home_view.dart';
 import 'package:planet_app/models/on_boarding_model.dart/on_boarding_model.dart';
 import 'package:planet_app/modules/on_boarding/on_boarding_body.dart';
 import 'package:planet_app/shared/bloc/app_cubit/app_cubit.dart';
-import 'package:planet_app/shared/componants/back_icon/back_icon.dart';
 import 'package:planet_app/shared/componants/custom_button.dart';
 import 'package:planet_app/shared/componants/nav_and_remove/nav_and_remove.dart';
 import 'package:planet_app/shared/style/colors/colors_style.dart';
+import 'package:planet_app/shared/style/fonts/font_style.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingView extends StatelessWidget {
@@ -24,10 +24,22 @@ class OnBoardingView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: defaultColor,
-          leading: const Padding(
-            padding: EdgeInsets.only(left: 20),
-            child: BackIcon(),
-          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                customNovAndRemove(context, routeName: HomeView.id);
+              },
+              child: Text(
+                'skip',
+                style: FontsClass.font24bold.copyWith(
+                    textBaseline: TextBaseline.alphabetic,
+                    decoration: TextDecoration.underline,
+                    fontWeight: FontWeight.w500,
+                    decorationThickness: 1.5,
+                    decorationColor: primaryColor),
+              ),
+            ),
+          ],
         ),
         backgroundColor: defaultColor,
         body: BlocBuilder<AppCubit, AppStates>(

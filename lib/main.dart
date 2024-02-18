@@ -18,6 +18,8 @@ class PlanetApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => AppCubit(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: "Planet Disease",
         theme: ThemeApp.lightTheme(),
         home: const SplashScreen(),
         routes: {
