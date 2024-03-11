@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:planet_app/layout/home_view.dart';
-import 'package:planet_app/models/splash_sceen/splash_sceen.dart';
 import 'package:planet_app/modules/on_boarding/on_boarding_view.dart';
 import 'package:planet_app/shared/bloc/app_cubit/app_cubit.dart';
+import 'package:planet_app/shared/cash_helper/cash_helper.dart';
 import 'package:planet_app/shared/style/theme/theme.dart';
+import 'modules/splash_screen/splash_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await CacheHelper.init();
   runApp(const PlanetApp());
 }
 

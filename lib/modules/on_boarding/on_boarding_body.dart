@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:planet_app/models/on_boarding_model.dart/on_boarding_model.dart';
 import 'package:planet_app/shared/style/fonts/font_style.dart';
 
@@ -11,22 +12,21 @@ class OnBoardingViewBody extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Image.asset(
-          onBoardingModel.image,
-        ),
-        const SizedBox(
-          height: 60,
+        Expanded(
+          child: Image.asset(
+            onBoardingModel.image,
+          ),
         ),
         Text(
           onBoardingModel.firstTitle,
-          style: FontsClass.font24bold,
+          style: FontsClass.font20bold,
         ),
         const SizedBox(
           height: 10,
         ),
         Text(
           onBoardingModel.secondTitle,
-          style: FontsClass.font24bold,
+          style: FontsClass.font20bold,
         ),
         const SizedBox(
           height: 10,
@@ -34,7 +34,7 @@ class OnBoardingViewBody extends StatelessWidget {
         if (onBoardingModel.therdTitle != null)
           Text(
             onBoardingModel.therdTitle!,
-            style: FontsClass.font24bold,
+            style: FontsClass.font20bold,
           ),
       ],
     );

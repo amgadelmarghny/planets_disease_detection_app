@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:planet_app/shared/style/colors/colors_style.dart';
 import 'package:planet_app/shared/style/fonts/font_style.dart';
 
 class CustomButton extends StatelessWidget {
@@ -14,17 +15,28 @@ class CustomButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 75,
+        height: 55,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(15),
+          color: defaultColor,
+          borderRadius: BorderRadius.circular(10),
         ),
-        child: Center(
-          child: Text(
-            text,
-            style: FontsClass.font32bold,
-          ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'lib/asset/image/scan_icon.webp',
+              height: 32,
+              color: Colors.white,
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Text(
+              text,
+              style: FontsClass.font20bold.copyWith(color: Colors.white),
+            ),
+          ],
         ),
       ),
     );

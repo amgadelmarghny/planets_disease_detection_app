@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:planet_app/modules/on_boarding/on_boarding_view.dart';
-import 'package:planet_app/shared/style/colors/colors_style.dart';
+import 'package:planet_app/shared/style/fonts/font_style.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -30,26 +30,30 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: defaultColor,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: defaultColor,
+        backgroundColor: Colors.white,
         toolbarHeight: 0,
       ),
       body: Column(
         children: [
           const Spacer(flex: 1),
-          Image.asset('lib/asset/image/splash_screen.png'),
+          Image.asset(
+            'lib/asset/image/splash_screen.png',
+            color: Colors.black,
+          ),
           const SizedBox(
             height: 20,
           ),
           const Text(
             textAlign: TextAlign.center,
-            'Plants Disease Detection Application',
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 32,
-              color: Colors.white,
-            ),
+            'Plants Disease Detection',
+            style: FontsClass.font20bold,
+          ),
+          const Text(
+            textAlign: TextAlign.center,
+            'Application',
+            style: FontsClass.font20bold,
           ),
           const Spacer(flex: 2)
         ],
