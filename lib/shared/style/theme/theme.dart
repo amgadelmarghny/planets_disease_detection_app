@@ -21,6 +21,7 @@ abstract class ThemeApp {
             fontSize: 22,
             fontWeight: FontWeight.w600,
           ),
+          bodySmall: TextStyle(fontSize: 20),
           bodyLarge: TextStyle(
             color: defaultColor,
             fontSize: 36,

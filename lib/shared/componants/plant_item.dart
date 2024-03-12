@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:planet_app/models/plant_model.dart/plant_model.dart';
+import 'package:planet_app/modules/plant/plant_view.dart';
 
 class PlantItem extends StatelessWidget {
   const PlantItem({
@@ -10,7 +11,13 @@ class PlantItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(
+          context,
+          PlantView.routeName,
+          arguments: plantModel,
+        );
+      },
       child: Container(
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:planet_app/layout/detection_bottom_sheet.dart';
 import 'package:planet_app/shared/componants/custom_button.dart';
-import 'package:planet_app/shared/componants/plant_item/plant_item.dart';
+import 'package:planet_app/shared/componants/plant_item.dart';
 import 'package:planet_app/shared/style/fonts/font_style.dart';
 
 import '../models/plant_model.dart/plant_model.dart';
@@ -29,6 +29,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
       PlantModel(image: 'lib/asset/image/apple.png', name: 'apple'),
     ];
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       child: Column(
         children: [
           Image.asset('lib/asset/image/home.png'),
