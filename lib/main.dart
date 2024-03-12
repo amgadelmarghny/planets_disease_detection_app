@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:planet_app/layout/home_view.dart';
 import 'package:planet_app/modules/on_boarding/on_boarding_view.dart';
+import 'package:planet_app/modules/scan_result/Scan_result.dart';
 import 'package:planet_app/shared/bloc/app_cubit/app_cubit.dart';
 import 'package:planet_app/shared/cash_helper/cash_helper.dart';
 import 'package:planet_app/shared/style/theme/theme.dart';
@@ -26,8 +27,9 @@ class PlanetApp extends StatelessWidget {
         theme: ThemeApp.lightTheme(),
         home: const SplashScreen(),
         routes: {
-          OnBoardingView.id: (context) => const OnBoardingView(),
-          HomeView.id: (context) => const HomeView(),
+          OnBoardingView.routeName: (context) => const OnBoardingView(),
+          HomeView.routeName: (context) => const HomeView(),
+          ScanResult.routeName: (context) => const ScanResult(),
         },
       ),
     );

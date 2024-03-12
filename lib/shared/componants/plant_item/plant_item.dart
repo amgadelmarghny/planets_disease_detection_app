@@ -9,16 +9,32 @@ class PlantItem extends StatelessWidget {
   final PlantModel plantModel;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Column(
-        children: [
-          Image.asset(
-            plantModel.image,
-          ),
-          Text(
-            plantModel.name,
-          ),
-        ],
+    return InkWell(
+      onTap: () {},
+      child: Container(
+        clipBehavior: Clip.hardEdge,
+        decoration: BoxDecoration(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 6,
+              spreadRadius: 2,
+              color: Colors.grey.withOpacity(0.4),
+            )
+          ],
+        ),
+        child: Column(
+          children: [
+            Image.asset(
+              plantModel.image,
+              fit: BoxFit.cover,
+            ),
+            Text(
+              plantModel.name,
+            ),
+          ],
+        ),
       ),
     );
   }

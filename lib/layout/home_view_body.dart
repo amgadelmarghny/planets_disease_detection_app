@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:planet_app/layout/detection_bottom_sheet.dart';
 import 'package:planet_app/shared/componants/custom_button.dart';
 import 'package:planet_app/shared/componants/plant_item/plant_item.dart';
 import 'package:planet_app/shared/style/fonts/font_style.dart';
@@ -28,15 +28,17 @@ class _HomeViewBodyState extends State<HomeViewBody> {
       PlantModel(image: 'lib/asset/image/tomato.png', name: 'tomato'),
       PlantModel(image: 'lib/asset/image/apple.png', name: 'apple'),
     ];
-    return Column(
-      children: [
-        Image.asset('lib/asset/image/home.png'),
-        Expanded(
-          child: Container(
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Image.asset('lib/asset/image/home.png'),
+          const SizedBox(height: 20),
+          Container(
             padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
             decoration: BoxDecoration(
-                color: Theme.of(context).scaffoldBackgroundColor,
-                borderRadius: BorderRadius.circular(50)),
+              color: Theme.of(context).scaffoldBackgroundColor,
+              borderRadius: BorderRadius.circular(40),
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -61,46 +63,26 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                   style: FontsClass.font20bold,
                 ),
                 const SizedBox(height: 20),
-                Expanded(
-                  child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            childAspectRatio: 2 / 1.9,
-                            mainAxisSpacing: 10,
-                            crossAxisSpacing: 20),
-                    itemCount: plantList.length,
-                    itemBuilder: (context, index) {
-                      return PlantItem(
-                        plantModel: plantList[index],
-                      );
-                    },
+                GridView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  clipBehavior: Clip.none,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    childAspectRatio: 2 / 1.9,
+                    mainAxisSpacing: 30,
+                    crossAxisSpacing: 20,
                   ),
+                  itemCount: plantList.length,
+                  itemBuilder: (context, index) {
+                    return PlantItem(
+                      plantModel: plantList[index],
+                    );
+                  },
                 ),
               ],
             ),
-          ),
-        )
-      ],
-    );
-  }
-}
-
-class DetextionOptions extends StatelessWidget {
-  const DetextionOptions({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(20),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          CustomButton(text: 'Choose from Gallery'),
-          SizedBox(height: 20),
-          CustomButton(text: 'Choose from Gallery'),
+          )
         ],
       ),
     );

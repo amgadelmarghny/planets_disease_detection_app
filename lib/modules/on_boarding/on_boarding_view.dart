@@ -11,7 +11,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingView extends StatelessWidget {
   const OnBoardingView({super.key});
-  static String id = 'OnBoarding';
+  static String routeName = 'OnBoarding';
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +63,8 @@ class OnBoardingView extends StatelessWidget {
                     children: [
                       TextButton(
                         onPressed: () {
-                          customNavAndRemove(context, routeName: HomeView.id);
+                          customNavAndRemove(context,
+                              routeName: HomeView.routeName);
                         },
                         child:
                             const Text('Skip', style: FontsClass.font20think),
@@ -77,7 +78,8 @@ class OnBoardingView extends StatelessWidget {
                                       .onBoardingList
                                       .length -
                                   1) {
-                            customNavAndRemove(context, routeName: HomeView.id);
+                            customNavAndRemove(context,
+                                routeName: HomeView.routeName);
                           }
                           {
                             pageController.nextPage(

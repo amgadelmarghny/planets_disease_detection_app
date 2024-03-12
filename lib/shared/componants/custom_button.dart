@@ -7,16 +7,18 @@ class CustomButton extends StatelessWidget {
     super.key,
     this.onTap,
     required this.text,
+    this.width = double.infinity,
   });
   final String text;
   final void Function()? onTap;
+  final double width;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
         height: 55,
-        width: double.infinity,
+        width: width,
         decoration: BoxDecoration(
           color: defaultColor,
           borderRadius: BorderRadius.circular(10),
@@ -24,11 +26,12 @@ class CustomButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              'lib/asset/image/scan_icon.webp',
-              height: 32,
-              color: Colors.white,
-            ),
+            if (width == double.infinity)
+              Image.asset(
+                'lib/asset/image/scan_icon.webp',
+                height: 32,
+                color: Colors.white,
+              ),
             const SizedBox(
               width: 10,
             ),
