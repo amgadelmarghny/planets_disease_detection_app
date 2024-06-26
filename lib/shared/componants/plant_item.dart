@@ -39,6 +39,8 @@ class PlantItem extends StatelessWidget {
             ),
             Text(
               plantModel.name,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
             ),
           ],
         ),

@@ -38,7 +38,7 @@ class CustomRowDirections extends StatelessWidget {
                     SvgPicture.asset(
                       svgPic!,
                       height: 32,
-                      color: color,
+                      colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
                     ),
                   if (image != null)
                     Image.asset(

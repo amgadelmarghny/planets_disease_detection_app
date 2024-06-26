@@ -66,6 +66,7 @@ class _DetextionOptionsState extends State<DetextionOptions> {
             onPressed: () async {
               final returnImage =
                   await ImagePicker().pickImage(source: ImageSource.camera);
+              if (!context.mounted) return;
               if (returnImage == null) return Navigator.pop(context);
               setState(() {
                 _pickedImage = File(returnImage.path);

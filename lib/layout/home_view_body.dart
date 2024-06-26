@@ -18,7 +18,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   Widget build(BuildContext context) {
     List<PlantModel> plantList = [
       PlantModel(image: 'lib/asset/image/corn.png', name: 'Corn'),
-      PlantModel(image: 'lib/asset/image/grap.png', name: 'grap'),
+      PlantModel(image: 'lib/asset/image/grap.png', name: 'grapes'),
       PlantModel(image: 'lib/asset/image/orange.png', name: 'orange'),
       PlantModel(image: 'lib/asset/image/peach.png', name: 'peach'),
       PlantModel(image: 'lib/asset/image/pepper.png', name: 'pepper'),
@@ -54,7 +54,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                         ),
                       ),
                       context: context,
-                      builder: (contex) => const DetextionOptions(),
+                      builder: (context) => const DetextionOptions(),
                     );
                   },
                 ),
@@ -70,7 +70,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                   clipBehavior: Clip.none,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
-                    childAspectRatio: 2 / 1.9,
+                    childAspectRatio: 2 / 1.95,
                     mainAxisSpacing: 30,
                     crossAxisSpacing: 20,
                   ),

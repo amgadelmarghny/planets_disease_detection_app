@@ -37,7 +37,7 @@ class OnBoardingView extends StatelessWidget {
                       },
                       itemCount: onBoardingList.length,
                       controller: pageController,
-                      itemBuilder: (contex, index) {
+                      itemBuilder: (context, index) {
                         return OnBoardingViewBody(
                           onBoardingModel: onBoardingList[index],
                         );
