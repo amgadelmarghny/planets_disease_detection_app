@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:planet_app/models/plant_model.dart/plant_model.dart';
 import 'package:planet_app/modules/plant/plant_info.dart';
-import 'package:planet_app/shared/componants/back_icon.dart';
+import 'package:planet_app/shared/components/back_icon.dart';
 
 class PlantView extends StatelessWidget {
   const PlantView({super.key});

@@ -5,6 +5,7 @@ import 'package:planet_app/modules/on_boarding/on_boarding_view.dart';
 import 'package:planet_app/modules/plant/plant_view.dart';
 import 'package:planet_app/modules/scan_result/Scan_result.dart';
 import 'package:planet_app/shared/bloc/app_cubit/app_cubit.dart';
+import 'package:planet_app/shared/bloc/plant_cubit/plant_cubit.dart';
 import 'package:planet_app/shared/cash_helper/cash_helper.dart';
 import 'package:planet_app/shared/style/theme/theme.dart';
 import 'modules/splash_screen/splash_screen.dart';
@@ -20,8 +21,15 @@ class PlanetApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AppCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AppCubit(),
+        ),
+        BlocProvider(
+          create: (context) => PlantCubit(),
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "Planet Disease",

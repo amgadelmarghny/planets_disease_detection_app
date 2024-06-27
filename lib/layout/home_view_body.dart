@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:planet_app/layout/detection_bottom_sheet.dart';
-import 'package:planet_app/shared/componants/custom_button.dart';
-import 'package:planet_app/shared/componants/plant_item.dart';
+import 'package:planet_app/shared/components/custom_button.dart';
+import 'package:planet_app/shared/components/plant_item.dart';
 import 'package:planet_app/shared/style/fonts/font_style.dart';
 
 import '../models/plant_model.dart/plant_model.dart';
@@ -54,7 +54,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                         ),
                       ),
                       context: context,
-                      builder: (context) => const DetextionOptions(),
+                      builder: (context) => const DetectionOptions(),
                     );
                   },
                 ),
