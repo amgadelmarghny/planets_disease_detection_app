@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "C:/Users/AMGAD/StudioProjects/planet_app/linux"
+    "cmake.sourceDirectory": "C:/Users/AMGAD/StudioProjects/planet_app/linux",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

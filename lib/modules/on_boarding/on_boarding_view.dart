@@ -4,7 +4,9 @@ import 'package:planet_app/layout/home_view.dart';
 import 'package:planet_app/models/on_boarding_model.dart/on_boarding_model.dart';
 import 'package:planet_app/modules/on_boarding/on_boarding_body.dart';
 import 'package:planet_app/shared/bloc/app_cubit/app_cubit.dart';
+import 'package:planet_app/shared/cash_helper/cash_helper.dart';
 import 'package:planet_app/shared/components/nav_and_remove.dart';
+import 'package:planet_app/shared/constants.dart';
 import 'package:planet_app/shared/style/colors/colors_style.dart';
 import 'package:planet_app/shared/style/fonts/font_style.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -63,8 +65,11 @@ class OnBoardingView extends StatelessWidget {
                     children: [
                       TextButton(
                         onPressed: () {
-                          customNavAndRemove(context,
-                              routeName: HomeView.routeName);
+                          CacheHelper.setData(kOnBoardingKey, true);
+                          customNavAndRemove(
+                            context,
+                            routeName: HomeView.routeName,
+                          );
                         },
                         child:
                             const Text('Skip', style: FontsClass.font20think),
@@ -78,12 +83,13 @@ class OnBoardingView extends StatelessWidget {
                                       .onBoardingList
                                       .length -
                                   1) {
+                            CacheHelper.setData(kOnBoardingKey, true);
                             customNavAndRemove(context,
                                 routeName: HomeView.routeName);
                           }
                           {
                             pageController.nextPage(
-                                duration: const Duration(milliseconds: 300),
+                                duration: const Duration(milliseconds: 250),
                                 curve: Curves.linear);
                           }
                         },

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:planet_app/shared/bloc/plant_cubit/plant_cubit.dart';
 import 'package:planet_app/shared/components/custom_button.dart';
-import 'package:planet_app/shared/components/flutter_toast.dart';
 import 'package:planet_app/shared/style/fonts/font_style.dart';
 
 class DetectionOptions extends StatelessWidget {
@@ -12,16 +12,7 @@ class DetectionOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<PlantCubit, PlantState>(
-      listener: (context, state) {
-        if (state is PickImageFailureState) {
-          showToast(msg: state.errMessage, toastState: ToastState.worrning);
-          Navigator.pop(context);
-        }
-        if(state is PickImageSuccessState){
-          //TODO: what will happen?
-        }
-      },
+    return BlocBuilder<PlantCubit, PlantState>(
       builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.all(20),
@@ -35,9 +26,10 @@ class DetectionOptions extends StatelessWidget {
               const SizedBox(height: 20),
               CustomButton(
                 text: 'Choose from Gallery',
-                onTap: ()  async {
-                  await BlocProvider.of<PlantCubit>(context)
-                      .pickImageFromGallery();
+                onTap: () async {
+                  await BlocProvider.of<PlantCubit>(context).pickImage(
+                    source: ImageSource.gallery,
+                  );
                 },
               ),
               const SizedBox(height: 40),
@@ -64,7 +56,7 @@ class DetectionOptions extends StatelessWidget {
                         TextButton(
                           onPressed: () async {
                             await BlocProvider.of<PlantCubit>(context)
-                                .pickImageFromCamera();
+                                .pickImage();
                           },
                           child: const Text('Ok'),
                         ),

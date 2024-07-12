@@ -1,90 +1,96 @@
 import 'package:flutter/material.dart';
-import 'package:planet_app/layout/detection_bottom_sheet.dart';
-import 'package:planet_app/shared/components/custom_button.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:planet_app/modules/scan_result/scan_result.dart';
+import 'package:planet_app/shared/bloc/plant_cubit/plant_cubit.dart';
+import 'package:planet_app/shared/components/flutter_toast.dart';
 import 'package:planet_app/shared/components/plant_item.dart';
 import 'package:planet_app/shared/style/fonts/font_style.dart';
 
-import '../models/plant_model.dart/plant_model.dart';
-
-class HomeViewBody extends StatefulWidget {
+class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
 
   @override
-  State<HomeViewBody> createState() => _HomeViewBodyState();
-}
-
-class _HomeViewBodyState extends State<HomeViewBody> {
-  @override
   Widget build(BuildContext context) {
-    List<PlantModel> plantList = [
-      PlantModel(image: 'lib/asset/image/corn.png', name: 'Corn'),
-      PlantModel(image: 'lib/asset/image/grap.png', name: 'grapes'),
-      PlantModel(image: 'lib/asset/image/orange.png', name: 'orange'),
-      PlantModel(image: 'lib/asset/image/peach.png', name: 'peach'),
-      PlantModel(image: 'lib/asset/image/pepper.png', name: 'pepper'),
-      PlantModel(image: 'lib/asset/image/potato.png', name: 'potato'),
-      PlantModel(image: 'lib/asset/image/squash.png', name: 'squash'),
-      PlantModel(image: 'lib/asset/image/strawberry.png', name: 'strawberry'),
-      PlantModel(image: 'lib/asset/image/tomato.png', name: 'tomato'),
-      PlantModel(image: 'lib/asset/image/apple.png', name: 'apple'),
-    ];
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      child: Column(
-        children: [
-          Image.asset('lib/asset/image/home.png'),
-          const SizedBox(height: 20),
-          Container(
-            padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
-            decoration: BoxDecoration(
-              color: Theme.of(context).scaffoldBackgroundColor,
-              borderRadius: BorderRadius.circular(40),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CustomButton(
-                  text: 'Detect Now',
-                  onTap: () {
-                    showModalBottomSheet(
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30),
-                          topRight: Radius.circular(30),
-                        ),
+    final cubit = context.read<PlantCubit>();
+
+    return BlocListener<PlantCubit, PlantState>(
+      listener: (context, state) {
+        if (state is PickImageFailureState) {
+          showToast(msg: state.errMessage, toastState: ToastState.worrning);
+          Navigator.pop(context);
+        }
+        if (state is PickImageSuccessState) {
+          Navigator.pop(context);
+          Navigator.pushNamed(
+            context,
+            ScanResultView.routeName,
+          );
+          context.read<PlantCubit>().getResult(
+                type: cubit.selectedPlant.type,
+                image: context.read<PlantCubit>().plantImage,
+              );
+        }
+      },
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Image.asset('lib/asset/image/home.png'),
+            const SizedBox(height: 5),
+            Container(
+              padding: const EdgeInsets.only(
+                top: 20,
+                left: 20,
+                right: 20,
+                bottom: 10,
+              ),
+              decoration: BoxDecoration(
+                color: Theme.of(context).scaffoldBackgroundColor,
+                borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40)),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Image.asset(
+                        'lib/asset/image/scan_icon.webp',
+                        height: 30,
                       ),
-                      context: context,
-                      builder: (context) => const DetectionOptions(),
-                    );
-                  },
-                ),
-                const SizedBox(height: 30),
-                const Text(
-                  'My plants',
-                  style: FontsClass.font20bold,
-                ),
-                const SizedBox(height: 20),
-                GridView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  clipBehavior: Clip.none,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    childAspectRatio: 2 / 1.95,
-                    mainAxisSpacing: 30,
-                    crossAxisSpacing: 20,
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      const Text(
+                        'Choose plant',
+                        style: FontsClass.font20bold,
+                      ),
+                    ],
                   ),
-                  itemCount: plantList.length,
-                  itemBuilder: (context, index) {
-                    return PlantItem(
-                      plantModel: plantList[index],
-                    );
-                  },
-                ),
-              ],
+                  const SizedBox(height: 20),
+                  GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    clipBehavior: Clip.none,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 2 / 1.6,
+                      mainAxisSpacing: 20,
+                      crossAxisSpacing: 20,
+                    ),
+                    itemCount: cubit.plantList.length,
+                    itemBuilder: (context, index) {
+                      return PlantItem(
+                        plantModel: cubit.plantList[index],
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }

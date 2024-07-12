@@ -10,7 +10,7 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xffEEFFE7),
       appBar: AppBar(
-        toolbarHeight: 10,
+        toolbarHeight: 0,
         backgroundColor: const Color(0xffEEFFE7),
       ),
       body: const HomeViewBody(),

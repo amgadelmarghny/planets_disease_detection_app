@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:planet_app/layout/detection_bottom_sheet.dart';
 import 'package:planet_app/models/plant_model.dart/plant_model.dart';
-import 'package:planet_app/modules/plant/plant_view.dart';
+import 'package:planet_app/shared/bloc/plant_cubit/plant_cubit.dart';
 
 class PlantItem extends StatelessWidget {
   const PlantItem({
@@ -12,10 +14,16 @@ class PlantItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(
-          context,
-          PlantView.routeName,
-          arguments: plantModel,
+        context.read<PlantCubit>().selectedPlant = plantModel;
+        showModalBottomSheet(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
+            ),
+          ),
+          context: context,
+          builder: (context) => const DetectionOptions(),
         );
       },
       child: Container(

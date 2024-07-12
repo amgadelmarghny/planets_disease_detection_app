@@ -22,14 +22,14 @@ class OnBoardingViewBody extends StatelessWidget {
           style: FontsClass.font20bold,
         ),
         const SizedBox(
-          height: 10,
+          height: 5,
         ),
         Text(
           onBoardingModel.secondTitle,
           style: FontsClass.font20bold,
         ),
         const SizedBox(
-          height: 10,
+          height: 5,
         ),
         if (onBoardingModel.therdTitle != null)
           Text(

@@ -1,5 +1,12 @@
+import 'package:planet_app/shared/enums.dart';
+
 class PlantModel {
-  String image;
+  final String image;
   final String name;
-  PlantModel({required this.image, required this.name});
+  final PlantType type;
+  PlantModel({
+    required this.image,
+    required this.name,
+    required this.type,
+  });
 }

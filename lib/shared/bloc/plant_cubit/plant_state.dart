@@ -16,3 +16,21 @@ final class PickImageFailureState extends PlantState {
 
   PickImageFailureState({required this.errMessage});
 }
+
+final class GetResultLoading extends PlantState {}
+
+final class GetResultSuccess extends PlantState {}
+
+final class GetResultFailure extends PlantState {
+  final String errMessage;
+
+  GetResultFailure({required this.errMessage});
+}
+
+final class ErrorResult extends PlantState {
+  final String errMessage;
+
+  ErrorResult({required this.errMessage});
+}
+
+
