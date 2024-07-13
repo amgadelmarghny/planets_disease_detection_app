@@ -41,7 +41,7 @@ class HomeViewBody extends StatelessWidget {
                 top: 20,
                 left: 20,
                 right: 20,
-                bottom: 10,
+                bottom: 8,
               ),
               decoration: BoxDecoration(
                 color: Theme.of(context).scaffoldBackgroundColor,

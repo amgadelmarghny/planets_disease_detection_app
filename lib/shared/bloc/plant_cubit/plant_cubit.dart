@@ -51,14 +51,15 @@ class PlantCubit extends Cubit<PlantState> {
 
   Future<void> getResult({required PlantType type, required File image}) async {
     emit(GetResultLoading());
-    
-      String endPoint = _getEndpoint(type);
 
-      FormData formData = FormData.fromMap(
-        {
-          'file': await MultipartFile.fromFile(image.path),
-        },
-      );
+    String endPoint = _getEndpoint(type);
+
+    FormData formData = FormData.fromMap(
+      {
+        'file': await MultipartFile.fromFile(image.path),
+      },
+    );
+    try {
       var res = await _apiServices.post(
         endPoint: endPoint,
         data: formData,
@@ -75,7 +76,9 @@ class PlantCubit extends Cubit<PlantState> {
         plantResultModel = PlantResultModel.fromJson(res.data);
         emit(GetResultFailure(errMessage: res.data['message']));
       }
-    
+    } catch (e) {
+      emit(GetResultFailure(errMessage: e.toString()));
+    }
   }
 
   String _getEndpoint(PlantType type) {
